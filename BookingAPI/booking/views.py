@@ -28,11 +28,6 @@ class BookingAPIView(APIView):
     def get(self,request):
         bookings=Bookings.objects.all()
         serializer=BookingSerializer(bookings,many=True)
-        for i in bookings:
-            bookings.filter(slot=i.slot)
-            no_of_bookings = bookings.count()
-
-        context={}
         return Response(serializer.data)
 
 class BookingsCancelAPIView(APIView):
